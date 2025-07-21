@@ -28,29 +28,29 @@ public class StudentController {
     }
 
     @GetMapping("/list")
-    public String getContacts(Model model){
-        List<Student> students = studentService.getContacts();
+    public String getStudent(Model model){
+        List<Student> students = studentService.getStudents();
         model.addAttribute("students", students);
         return "student/studentList";
     }
 
     @GetMapping("/detail/{id}")
-    public String getContactDetails(@PathVariable("id") UUID id, Model model){
-        Student student = studentService.getContact(id);
+    public String getStudentDetails(@PathVariable("id") UUID id, Model model){
+        Student student = studentService.getStudent(id);
         model.addAttribute("student", student);
         return "student/studentDetails";
     }
 
     @GetMapping("/add")
-    public String addContact(Model model){
+    public String addStudent(Model model){
         Student student = new Student();
         model.addAttribute("student", student);
         return "student/studentForm";
     }
 
     @PostMapping("/add")
-    public String addContact(Student student){
-        studentService.addContact(student);
+    public String addStudent(Student student){
+        studentService.addStudent(student);
         return "redirect:/student/list";
     }
 

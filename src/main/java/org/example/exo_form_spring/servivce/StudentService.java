@@ -22,26 +22,30 @@ public class StudentService {
         students.put(student3.getId(), student3);
     }
 
-    public List<Student> getContacts() {
+    public List<Student> getStudents() {
         return students.values().stream().toList();
     }
 
-    public Student getContact(UUID id) {
+    public Student getStudent(UUID id) {
         return students.get(id);
     }
 
-    public void addContact(Student student) {
+    public void addStudent(Student student) {
         UUID id = UUID.randomUUID();
         student.setId(id);
         students.put(id, student);
     }
 
-    public void updateContact(Student student) {
+    public void updateStudent(Student student) {
         students.put(student.getId(), student);
     }
 
-    public void removeContact(UUID id) {
+    public void removeStudent(UUID id) {
         students.remove(id);
+    }
+
+    public List<Student> search() {
+        return students.values().stream().toList();
     }
 }
 
