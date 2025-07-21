@@ -4,10 +4,7 @@ import org.example.exo_form_spring.model.Student;
 import org.example.exo_form_spring.servivce.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -53,5 +50,20 @@ public class StudentController {
         studentService.addStudent(student);
         return "redirect:/student/list";
     }
+
+    @GetMapping("/search")
+    public String searchStudent(Model model){
+        Student student = new Student();
+        model.addAttribute("student", student);
+        return "student/studentSearch";
+    }
+
+    @PostMapping("/search")
+    public String searchResult(@RequestParam String keyword, Model model) {
+        List<Student> results = studentService.search(keyword);
+        model.addAttribute("results", results);
+        return "student/studentSearch";
+    }
+
 
 }

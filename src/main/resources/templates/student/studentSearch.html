@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Rechercher un étudiant</title>
+</head>
+<body>
+<h1>Rechercher un étudiant</h1>
+
+<form th:action="@{/student/search}" method="post">
+  <label for="keyword">Nom ou prénom :</label>
+  <input type="text" id="keyword" name="keyword"/>
+  <button type="submit">Rechercher</button>
+</form>
+
+<div th:if="${results != null}">
+  <h2>Résultats :</h2>
+  <ul>
+    <li th:each="s : ${results}">
+      <span th:text="${s.firstName + ' ' + s.lastName}"></span>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>

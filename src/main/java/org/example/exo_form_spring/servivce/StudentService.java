@@ -44,8 +44,11 @@ public class StudentService {
         students.remove(id);
     }
 
-    public List<Student> search() {
-        return students.values().stream().toList();
+    public List<Student> search(String keyword) {
+        return students.values().stream()
+                .filter(s -> s.getFirstName().toLowerCase().contains(keyword.toLowerCase()) ||
+                        s.getLastName().toLowerCase().contains(keyword.toLowerCase()))
+                .toList();
     }
 }
 
